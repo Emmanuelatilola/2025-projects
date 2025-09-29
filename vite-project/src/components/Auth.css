@@ -1,0 +1,165 @@
+/* Simplified Auth Styles */
+.auth-container {
+  min-height: 100vh;
+  background-color: #262a35 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-logo i {
+  font-size: 2rem;
+  color: #262a35;
+}
+
+.auth-logo h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #262a35;
+  margin: 0;
+}
+
+.auth-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #262a35;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: #262a35;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #262a35;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  color: #262a35;
+  padding: 1rem;
+  border: 2px solid #262a35;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #ebddbf;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #262a35;
+  background: #ebddbf;
+  box-shadow: 0 0 0 3px rgba(38, 42, 53, 0.1);
+}
+
+.error-message {
+  background: #262a35;
+  color: #ebddbf;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #262a35;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #262a35;
+  color: #ebddbf;
+  border: 2px solid #262a35;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(38, 42, 53, 0.3);
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background-color: #ebddbf;
+  color: #262a35;
+  box-shadow: 0 6px 20px rgba(38, 42, 53, 0.4);
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #262a35;
+}
+
+.auth-footer p {
+  color: #262a35;
+  margin: 0;
+}
+
+.auth-footer a {
+  color: #262a35;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.auth-footer a:hover {
+  color: #262a35;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 1rem;
+  }
+  
+  .auth-card {
+    padding: 2rem;
+  }
+}
