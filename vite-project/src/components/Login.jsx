@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Auth.css'
+import Loader from './ui/Loader'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -85,12 +86,15 @@ function Login() {
           </div>
 
           <button type="submit" className="auth-button" disabled={isLoading}>
-            {isLoading ? 'Signing In...' : 'Sign In'}
+            {isLoading ? <Loader text="Signing In..." /> : 'Sign In'}
           </button>
         </form>
 
         <div className="auth-footer">
           <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+          <p style={{marginTop:'8px'}}>
+            <Link to="/">← Back to Home</Link>
+          </p>
         </div>
       </div>
     </div>

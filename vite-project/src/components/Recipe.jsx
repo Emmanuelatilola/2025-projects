@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Recipe.css'
+import Loader from './ui/Loader'
 
 function Recipe() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -116,8 +118,8 @@ function Recipe() {
         )}
 
         {loading && (
-          <div className="loading-card">
-            <div className="loading-spinner"></div>
+          <div className="loading-card" style={{display:'flex',flexDirection:'column',alignItems:'center',gap:'14px'}}>
+            <Loader text="Finding delicious recipes..." />
             <p className="loading-text">Finding delicious recipes...</p>
           </div>
         )}
@@ -244,6 +246,12 @@ function Recipe() {
             </div>
           </div>
         )}
+      </div>
+
+      <div style={{textAlign:'center', padding:'20px'}}>
+        <Link to="/" className="video-link" style={{display:'inline-block'}}>
+          ← Back to Home
+        </Link>
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './EcoThreads.css'
 
 // Mock data for sustainable fashion products
@@ -587,6 +588,11 @@ function EcoThreads() {
           </div>
         </div>
       )}
+    </div>
+    <div style={{textAlign:'center', padding:'20px'}}>
+      <Link to="/" className="video-link" style={{display:'inline-block'}}>
+        ← Back to Home
+      </Link>
     </div>
   )
 }
