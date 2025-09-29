@@ -588,11 +588,11 @@ function EcoThreads() {
           </div>
         </div>
       )}
-    </div>
-    <div style={{textAlign:'center', padding:'20px'}}>
-      <Link to="/" className="video-link" style={{display:'inline-block'}}>
-        ← Back to Home
-      </Link>
+      <div style={{textAlign:'center', padding:'20px'}}>
+        <Link to="/" className="video-link" style={{display:'inline-block'}}>
+          ← Back to Home
+        </Link>
+      </div>
     </div>
   )
 }
