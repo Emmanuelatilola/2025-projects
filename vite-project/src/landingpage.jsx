@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function landingpage() {
+function LandingPage() {
   const [theme, setTheme] = useState('dark')
   const navigate = useNavigate()
 
@@ -231,4 +231,4 @@ function landingpage() {
   )
 }
 
-export default landingpage
+export default LandingPage

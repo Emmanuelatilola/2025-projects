@@ -210,7 +210,11 @@ function Recipe() {
                             Instructions
                           </h4>
                           <div className="instructions-container">
-                            {recipe.strInstructions.split('\r\n').filter(step => step.trim()).map((step, index) => (
+                            {recipe.strInstructions
+                              .replace(/\r?\n/g, '\n')
+                              .split('\n')
+                              .filter(step => step.trim())
+                              .map((step, index) => (
                               <div key={index} className="instruction-step">
                                 <span className="step-number">{index + 1}</span>
                                 <p className="step-text">{step}</p>

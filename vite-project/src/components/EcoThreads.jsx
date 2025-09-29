@@ -118,12 +118,21 @@ function EcoThreads() {
   useEffect(() => {
     const savedCart = localStorage.getItem('ecothreads-cart')
     const savedWishlist = localStorage.getItem('ecothreads-wishlist')
-    
-    if (savedCart) {
-      setCart(JSON.parse(savedCart))
+    try {
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart)
+        if (Array.isArray(parsedCart)) setCart(parsedCart)
+      }
+    } catch (_) {
+      // ignore malformed cart
     }
-    if (savedWishlist) {
-      setWishlist(JSON.parse(savedWishlist))
+    try {
+      if (savedWishlist) {
+        const parsedWishlist = JSON.parse(savedWishlist)
+        if (Array.isArray(parsedWishlist)) setWishlist(parsedWishlist)
+      }
+    } catch (_) {
+      // ignore malformed wishlist
     }
   }, [])
 
