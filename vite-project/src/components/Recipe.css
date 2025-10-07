@@ -28,8 +28,8 @@
 }
 
 /* Hero Section Base Styles */
-.hero-section {
-  background-color: #004687;
+#hero-section {
+  background-color: #333333;
   padding: 100px 20px;
   text-align: center;
   color: white;
@@ -92,7 +92,7 @@
 .search-icon {
   padding: 0 20px;
   font-size: 1.2rem;
-  color: #667eea;
+  color: #333333;
 }
 
 .search-input {
@@ -102,13 +102,13 @@
   outline: none;
   font-size: 1.1rem;
   background: transparent;
-  color: #333;
+  color: #333333;
 }
 
 .search-button {
   padding: 20px 30px;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-  color: white;
+  background: #333333;
+  color: #ffffff;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -124,14 +124,14 @@
 
 .search-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 8px 25px rgba(176, 190, 197, 0.6);
 }
 
 .spinner {
   width: 20px;
   height: 20px;
   border: 2px solid transparent;
-  border-top: 2px solid white;
+  border-top: 2px solid #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -145,7 +145,7 @@
 
 /* Error Card Styles */
 .error-card {
-  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  background: #333333;
   color: white;
   padding: 25px;
   border-radius: 20px;
@@ -204,7 +204,7 @@
   width: 60px;
   height: 60px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border-top: 4px solid #333333;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 30px;
@@ -212,7 +212,7 @@
 
 .loading-text {
   font-size: 1.3rem;
-  color: #667eea;
+  color: #333333;
   font-weight: 500;
   margin: 0;
 }
@@ -229,14 +229,14 @@
 
 .results-title {
   font-size: 2.8rem;
-  color: #2d3748;
+  color: #333333;
   margin-bottom: 15px;
   font-weight: 700;
 }
 
 .results-subtitle {
   font-size: 1.2rem;
-  color: #718096;
+  color: #b0bec5;
   margin: 0;
 }
 
@@ -279,7 +279,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(51,51,51,0.7) 100%);
   display: flex;
   align-items: flex-end;
   padding: 25px;
@@ -293,7 +293,7 @@
 
 .category-badge {
   background: rgba(255,255,255,0.95);
-  color: #2d3748;
+  color: #333333;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -302,8 +302,8 @@
 }
 
 .area-badge {
-  background: rgba(102, 126, 234, 0.95);
-  color: white;
+  background: rgba(176, 190, 197, 0.95);
+  color: #333333;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -317,7 +317,7 @@
 
 .recipe-title {
   font-size: 1.6rem;
-  color: #2d3748;
+  color: #333333;
   margin-bottom: 20px;
   font-weight: 700;
   line-height: 1.3;
@@ -334,7 +334,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #718096;
+  color: #333333;
+  opacity: 0.85;
   font-size: 1rem;
 }
 
@@ -345,8 +346,8 @@
 .details-button {
   width: 100%;
   padding: 18px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
+  background: #333333;
+  color: #ffffff;
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -357,7 +358,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(176, 190, 197, 0.5);
 }
 
 .button-icon {
@@ -377,7 +378,7 @@
 
 .section-title {
   font-size: 1.3rem;
-  color: #2d3748;
+  color: #333333;
   margin-bottom: 20px;
   font-weight: 600;
   display: flex;
@@ -408,13 +409,13 @@
 
 .ingredient-measure {
   font-weight: 700;
-  color: #667eea;
+  color: #333333;
   min-width: 70px;
   font-size: 0.9rem;
 }
 
 .ingredient-name {
-  color: #4a5568;
+  color: #333333;
   font-weight: 500;
 }
 
@@ -432,8 +433,8 @@
 }
 
 .step-number {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
+  background: #333333;
+  color: #ffffff;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -443,11 +444,11 @@
   font-weight: 700;
   font-size: 1rem;
   flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(176, 190, 197, 0.5);
 }
 
 .step-text {
-  color: #4a5568;
+  color: #333333;
   line-height: 1.7;
   margin: 0;
   flex: 1;
@@ -463,14 +464,14 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-  color: white;
+  background: #333333;
+  color: #ffffff;
   text-decoration: none;
   padding: 15px 30px;
   border-radius: 30px;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 6px 20px rgba(176, 190, 197, 0.5);
   font-size: 1rem;
 }
 

@@ -58,7 +58,7 @@ function Recipe() {
   return (
     <div style={styles.container}>
       {/* Hero Section */}
-      <div className="hero-section">
+      <div id="hero-section">
         <div className="hero-content">
           <div className="logo-container">
             <div className="logo-icon">🍳</div>
