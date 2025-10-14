@@ -230,46 +230,46 @@ function EcoThreads() {
   const sustainabilityOptions = ['All', 'Eco-Friendly', 'Recycled', 'Organic', 'Bamboo', 'Hemp']
 
   return (
-    <div className="ecothreads">
+    <div className="etx-root">
       {/* Header */}
-      <header className="ecothreads-header">
-        <div className="header-content">
-          <div className="logo-section">
-            <div className="logo-icon">
-              <i className="fa-solid fa-leaf" style={{color: '#32CD32'}}></i>
+      <header className="etx-header">
+        <div className="etx-header-content">
+          <div className="etx-logo">
+            <div className="etx-logo-icon">
+              <i className="fa-solid fa-leaf"></i>
               </div>
-            <h1 className="logo-text">EcoThreads</h1>
-            <span className="tagline">Sustainable Fashion</span>
+            <h1 className="etx-logo-text">EcoThreads</h1>
+            <span className="etx-tagline">Sustainable Fashion</span>
           </div>
           
-          <div className="search-section">
-            <div className="search-container">
-              <div className="search-icon"><i className="fas fa-search"></i></div>
+          <div className="etx-search">
+            <div className="etx-search-container">
+              <div className="etx-search-icon"><i className="fas fa-search"></i></div>
               <input
                 type="text"
                 placeholder="Search sustainable fashion..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
+                className="etx-search-input"
               />
             </div>
           </div>
 
-          <div className="header-actions">
+          <div className="etx-header-actions">
             <button 
-              className="wishlist-btn"
+              className="etx-wishlist-btn"
               title="Wishlist"
             >
-              <span className="btn-icon"><i className="fas fa-heart"></i></span>
+              <span className="etx-btn-icon"><i className="fas fa-heart"></i></span>
               <span className="btn-text">{wishlist.length}</span>
             </button>
             
             <button 
-              className="cart-btn"
+              className="etx-cart-btn"
               onClick={() => setShowCart(!showCart)}
               title="Shopping Cart"
             >
-              <span className="btn-icon"><i className="fas fa-shopping-cart"></i></span>
+              <span className="etx-btn-icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="btn-text">{getCartItemCount()}</span>
             </button>
           </div>
@@ -277,41 +277,41 @@ function EcoThreads() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <h2 className="hero-title">Sustainable Fashion for a Better Tomorrow</h2>
-          <p className="hero-subtitle">
+      <section className="etx-hero">
+        <div className="etx-hero-content">
+          <h2 className="etx-hero-title">Sustainable Fashion for a Better Tomorrow</h2>
+          <p className="etx-hero-subtitle">
             Discover eco-friendly clothing that doesn't compromise on style. 
             Every purchase supports environmental responsibility.
           </p>
-          <div className="hero-stats">
-            <div className="stat">
-              <span className="stat-number">10K+</span>
-              <span className="stat-label">Happy Customers</span>
+          <div className="etx-hero-stats">
+            <div className="etx-stat">
+              <span className="etx-stat-number">10K+</span>
+              <span className="etx-stat-label">Happy Customers</span>
             </div>
-            <div className="stat">
-              <span className="stat-number">50K+</span>
-              <span className="stat-label">Trees Planted</span>
+            <div className="etx-stat">
+              <span className="etx-stat-number">50K+</span>
+              <span className="etx-stat-label">Trees Planted</span>
             </div>
-            <div className="stat">
-              <span className="stat-number">100%</span>
-              <span className="stat-label">Eco-Friendly</span>
+            <div className="etx-stat">
+              <span className="etx-stat-number">100%</span>
+              <span className="etx-stat-label">Eco-Friendly</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className="etx-main">
         {/* Sidebar Filters */}
-        <aside className="filters-sidebar">
-          <div className="filter-section">
-            <h3 className="filter-title">Categories</h3>
-            <div className="filter-options">
+        <aside className="etx-filters">
+          <div className="etx-filter-section">
+            <h3 className="etx-filter-title">Categories</h3>
+            <div className="etx-filter-options">
               {categories.map(category => (
                 <button
                   key={category}
-                  className={`filter-option ${selectedCategory === category ? 'active' : ''}`}
+                  className={`etx-filter-option ${selectedCategory === category ? 'active' : ''}`}
                   onClick={() => setSelectedCategory(category)}
                 >
                   {category}
@@ -320,13 +320,13 @@ function EcoThreads() {
             </div>
           </div>
 
-          <div className="filter-section">
-            <h3 className="filter-title">Sustainability</h3>
-            <div className="filter-options">
+          <div className="etx-filter-section">
+            <h3 className="etx-filter-title">Sustainability</h3>
+            <div className="etx-filter-options">
               {sustainabilityOptions.map(option => (
                 <button
                   key={option}
-                  className={`filter-option ${selectedSustainability === option ? 'active' : ''}`}
+                  className={`etx-filter-option ${selectedSustainability === option ? 'active' : ''}`}
                   onClick={() => setSelectedSustainability(option)}
                 >
                   {option}
@@ -335,35 +335,35 @@ function EcoThreads() {
             </div>
           </div>
 
-          <div className="filter-section">
-            <h3 className="filter-title">Price Range</h3>
-            <div className="price-range">
-              <span className="price-label">${priceRange[0]} - ${priceRange[1]}</span>
+          <div className="etx-filter-section">
+            <h3 className="etx-filter-title">Price Range</h3>
+            <div className="etx-price-range">
+              <span className="etx-price-label">${priceRange[0]} - ${priceRange[1]}</span>
               <input
                 type="range"
                 min="0"
                 max="200"
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                className="price-slider"
+                className="etx-price-slider"
               />
             </div>
           </div>
         </aside>
 
         {/* Products Section */}
-        <main className="products-section">
-          <div className="products-header">
-            <h2 className="products-title">
+        <main className="etx-products">
+          <div className="etx-products-header">
+            <h2 className="etx-products-title">
               {filteredProducts.length} Sustainable Products
             </h2>
-            <div className="sort-controls">
+            <div className="etx-sort-controls">
               <label htmlFor="sort-select">Sort by:</label>
               <select
                 id="sort-select"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="sort-select"
+                className="etx-sort-select"
               >
                 <option value="featured">Featured</option>
                 <option value="price-low">Price: Low to High</option>
@@ -374,28 +374,28 @@ function EcoThreads() {
             </div>
           </div>
 
-          <div className="products-grid">
+          <div className="etx-products-grid">
             {filteredProducts.map(product => (
-              <div key={product.id} className="product-card">
-                <div className="product-image-container">
+              <div key={product.id} className="etx-product-card">
+                <div className="etx-product-image-container">
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    className="product-image"
+                    className="etx-product-image"
                   />
-                  <div className="product-badges">
+                  <div className="etx-product-badges">
                     {product.badge && (
-                      <span className={`product-badge ${product.badge.toLowerCase().replace(' ', '-')}`}>
+                      <span className={`etx-product-badge ${product.badge.toLowerCase().replace(' ', '-')}`}>
                         {product.badge}
                       </span>
                     )}
-                    <span className={`sustainability-badge ${product.sustainability.toLowerCase()}`}>
+                    <span className={`etx-sustainability-badge ${product.sustainability.toLowerCase()}`}>
                       {product.sustainability}
                     </span>
                   </div>
-                  <div className="product-actions">
+                  <div className="etx-product-actions">
                     <button 
-                      className="action-btn wishlist-btn"
+                      className="etx-action-btn etx-wishlist-btn"
                       onClick={() => toggleWishlist(product)}
                       title="Add to Wishlist"
                     >
@@ -405,7 +405,7 @@ function EcoThreads() {
                       }
                     </button>
                     <button 
-                      className="action-btn quick-view-btn"
+                      className="etx-action-btn etx-quick-view-btn"
                       onClick={() => setSelectedProduct(product)}
                       title="Quick View"
                     >
@@ -414,21 +414,21 @@ function EcoThreads() {
                   </div>
                 </div>
                 
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <div className="product-rating">
-                    <span className="stars"><i className="fas fa-star"></i></span>
-                    <span className="rating-value">{product.rating}</span>
-                    <span className="reviews-count">({product.reviews})</span>
+                <div className="etx-product-info">
+                  <h3 className="etx-product-name">{product.name}</h3>
+                  <div className="etx-product-rating">
+                    <span className="etx-stars"><i className="fas fa-star"></i></span>
+                    <span className="etx-rating-value">{product.rating}</span>
+                    <span className="etx-reviews-count">({product.reviews})</span>
                   </div>
-                  <div className="product-price">
-                    <span className="current-price">${product.price}</span>
+                  <div className="etx-product-price">
+                    <span className="etx-current-price">${product.price}</span>
                     {product.originalPrice > product.price && (
-                      <span className="original-price">${product.originalPrice}</span>
+                      <span className="etx-original-price">${product.originalPrice}</span>
                     )}
                   </div>
                   <button 
-                    className="add-to-cart-btn"
+                    className="etx-add-to-cart-btn"
                     onClick={() => addToCart(product)}
                     disabled={!product.inStock}
                   >
@@ -443,42 +443,42 @@ function EcoThreads() {
 
       {/* Shopping Cart Sidebar */}
       {showCart && (
-        <div className="cart-overlay" onClick={() => setShowCart(false)}>
-          <div className="cart-sidebar" onClick={(e) => e.stopPropagation()}>
-            <div className="cart-header">
+        <div className="etx-cart-overlay" onClick={() => setShowCart(false)}>
+          <div className="etx-cart-sidebar" onClick={(e) => e.stopPropagation()}>
+            <div className="etx-cart-header">
               <h3>Shopping Cart ({getCartItemCount()})</h3>
               <button 
-                className="close-cart-btn"
+                className="etx-close-cart-btn"
                 onClick={() => setShowCart(false)}
               >
                 <i className="fas fa-times"></i>
               </button>
             </div>
             
-            <div className="cart-items">
+            <div className="etx-cart-items">
               {cart.length === 0 ? (
-                <div className="empty-cart">
-                  <div className="empty-cart-icon"><i className="fas fa-shopping-cart"></i></div>
+                <div className="etx-empty-cart">
+                  <div className="etx-empty-cart-icon"><i className="fas fa-shopping-cart"></i></div>
                   <p>Your cart is empty</p>
                 </div>
               ) : (
                 cart.map(item => (
-                  <div key={item.id} className="cart-item">
-                    <img src={item.image} alt={item.name} className="cart-item-image" />
-                    <div className="cart-item-info">
-                      <h4 className="cart-item-name">{item.name}</h4>
-                      <p className="cart-item-price">${item.price}</p>
-                      <div className="quantity-controls">
+                  <div key={item.id} className="etx-cart-item">
+                    <img src={item.image} alt={item.name} className="etx-cart-item-image" />
+                    <div className="etx-cart-item-info">
+                      <h4 className="etx-cart-item-name">{item.name}</h4>
+                      <p className="etx-cart-item-price">${item.price}</p>
+                      <div className="etx-quantity-controls">
                         <button 
                           onClick={() => updateCartQuantity(item.id, item.quantity - 1)}
-                          className="quantity-btn"
+                          className="etx-quantity-btn"
                         >
                           -
                         </button>
-                        <span className="quantity">{item.quantity}</span>
+                        <span className="etx-quantity">{item.quantity}</span>
                         <button 
                           onClick={() => updateCartQuantity(item.id, item.quantity + 1)}
-                          className="quantity-btn"
+                          className="etx-quantity-btn"
                         >
                           +
                         </button>
@@ -486,7 +486,7 @@ function EcoThreads() {
                     </div>
                     <button 
                       onClick={() => removeFromCart(item.id)}
-                      className="remove-item-btn"
+                      className="etx-remove-item-btn"
                     >
                       <i className="fas fa-times"></i>
                     </button>
@@ -496,12 +496,12 @@ function EcoThreads() {
             </div>
             
             {cart.length > 0 && (
-              <div className="cart-footer">
-                <div className="cart-total">
+              <div className="etx-cart-footer">
+                <div className="etx-cart-total">
                   <span className="total-label">Total:</span>
                   <span className="total-amount">${getCartTotal().toFixed(2)}</span>
                 </div>
-                <button className="checkout-btn">
+                <button className="etx-checkout-btn">
                   Proceed to Checkout
                 </button>
               </div>
@@ -512,59 +512,59 @@ function EcoThreads() {
 
       {/* Product Detail Modal */}
       {selectedProduct && (
-        <div className="product-modal-overlay" onClick={() => setSelectedProduct(null)}>
-          <div className="product-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="etx-product-modal-overlay" onClick={() => setSelectedProduct(null)}>
+          <div className="etx-product-modal" onClick={(e) => e.stopPropagation()}>
             <button 
-              className="close-modal-btn"
+              className="etx-close-modal-btn"
               onClick={() => setSelectedProduct(null)}
             >
               <i className="fas fa-times"></i>
             </button>
             
-            <div className="modal-content">
-              <div className="modal-image">
+            <div className="etx-modal-content">
+              <div className="etx-modal-image">
                 <img src={selectedProduct.image} alt={selectedProduct.name} />
               </div>
               
-              <div className="modal-info">
-                <h2 className="modal-title">{selectedProduct.name}</h2>
-                <div className="modal-rating">
+              <div className="etx-modal-info">
+                <h2 className="etx-modal-title">{selectedProduct.name}</h2>
+                <div className="etx-modal-rating">
                   <span className="stars"><i className="fas fa-star"></i></span>
                   <span className="rating-value">{selectedProduct.rating}</span>
                   <span className="reviews-count">({selectedProduct.reviews} reviews)</span>
                 </div>
                 
-                <div className="modal-price">
-                  <span className="current-price">${selectedProduct.price}</span>
+                <div className="etx-modal-price">
+                  <span className="etx-current-price">${selectedProduct.price}</span>
                   {selectedProduct.originalPrice > selectedProduct.price && (
-                    <span className="original-price">${selectedProduct.originalPrice}</span>
+                    <span className="etx-original-price">${selectedProduct.originalPrice}</span>
                   )}
                 </div>
                 
-                <p className="modal-description">{selectedProduct.description}</p>
+                <p className="etx-modal-description">{selectedProduct.description}</p>
                 
-                <div className="modal-details">
-                  <div className="detail-row">
-                    <span className="detail-label">Category:</span>
-                    <span className="detail-value">{selectedProduct.category}</span>
+                <div className="etx-modal-details">
+                  <div className="etx-detail-row">
+                    <span className="etx-detail-label">Category:</span>
+                    <span className="etx-detail-value">{selectedProduct.category}</span>
                   </div>
-                  <div className="detail-row">
-                    <span className="detail-label">Sustainability:</span>
-                    <span className="detail-value">{selectedProduct.sustainability}</span>
+                  <div className="etx-detail-row">
+                    <span className="etx-detail-label">Sustainability:</span>
+                    <span className="etx-detail-value">{selectedProduct.sustainability}</span>
                   </div>
-                  <div className="detail-row">
-                    <span className="detail-label">Sizes:</span>
-                    <span className="detail-value">{selectedProduct.sizes.join(', ')}</span>
+                  <div className="etx-detail-row">
+                    <span className="etx-detail-label">Sizes:</span>
+                    <span className="etx-detail-value">{selectedProduct.sizes.join(', ')}</span>
                   </div>
-                  <div className="detail-row">
-                    <span className="detail-label">Colors:</span>
-                    <span className="detail-value">{selectedProduct.colors.join(', ')}</span>
+                  <div className="etx-detail-row">
+                    <span className="etx-detail-label">Colors:</span>
+                    <span className="etx-detail-value">{selectedProduct.colors.join(', ')}</span>
                   </div>
                 </div>
                 
-                <div className="modal-actions">
+                <div className="etx-modal-actions">
                   <button 
-                    className="modal-wishlist-btn"
+                    className="etx-modal-wishlist-btn"
                     onClick={() => toggleWishlist(selectedProduct)}
                   >
                     {wishlist.find(item => item.id === selectedProduct.id) ? 
@@ -573,7 +573,7 @@ function EcoThreads() {
                     }
                   </button>
                   <button 
-                    className="modal-cart-btn"
+                    className="etx-modal-cart-btn"
                     onClick={() => {
                       addToCart(selectedProduct)
                       setSelectedProduct(null)
