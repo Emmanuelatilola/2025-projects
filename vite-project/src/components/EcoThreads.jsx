@@ -12,8 +12,8 @@ const seedProducts = [
   { id: 8, name: 'Recycled Sneakers', price: 79.99, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=500&fit=crop', category: 'Footwear', badge: 'Eco' },
   { id: 9, name: 'Organic Hoodie', price: 59.99, image: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=400&h=500&fit=crop', category: 'Outerwear', badge: 'Warm' },
   { id: 10, name: 'Bamboo Socks (3-pack)', price: 14.99, image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=500&fit=crop', category: 'Accessories', badge: 'Soft' },
-  { id: 11, name: 'Tencel Scarf', price: 22.99, image: 'https://images.unsplash.com/photo-1542060748-10c28b62716b?w=400&h=500&fit=crop', category: 'Accessories', badge: 'Light' },
-  { id: 12, name: 'Recycled Backpack', price: 69.99, image: 'https://images.unsplash.com/photo-1514477917009-389c76a86b68?w=400&h=500&fit=crop', category: 'Bags', badge: 'Recycled' }
+  { id: 11, name: 'Tencel Scarf', price: 22.99, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1rNsDZcO56lZB7KZrxyOldJ3sNlcPJpOiw&s', category: 'Accessories', badge: 'Light' },
+  { id: 12, name: 'Recycled Backpack', price: 69.99, image: 'https://au.passenger-clothing.com/cdn/shop/files/U-BG-GQOGZ-3231_B.jpg?v=1760019205&width=1080', category: 'Bags', badge: 'Recycled' }
 ]
 
 function EcoThreads() {
