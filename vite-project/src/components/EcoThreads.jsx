@@ -1,598 +1,144 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './EcoThreads.css'
 
-// Mock data for sustainable fashion products
-const mockProducts = [
-  {
-    id: 1,
-    name: "Organic Cotton T-Shirt",
-    price: 29.99,
-    originalPrice: 39.99,
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop",
-    category: "Tops",
-    sustainability: "Eco-Friendly",
-    rating: 4.8,
-    reviews: 124,
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["White", "Black", "Navy"],
-    description: "Made from 100% organic cotton, this comfortable t-shirt is perfect for everyday wear while supporting sustainable fashion.",
-    inStock: true,
-    badge: "Best Seller"
-  },
-  {
-    id: 2,
-    name: "Recycled Denim Jacket",
-    price: 89.99,
-    originalPrice: 120.00,
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=500&fit=crop",
-    category: "Outerwear",
-    sustainability: "Recycled",
-    rating: 4.9,
-    reviews: 89,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Blue", "Black"],
-    description: "Crafted from recycled denim, this jacket combines style with environmental responsibility.",
-    inStock: true,
-    badge: "Eco Choice"
-  },
-  {
-    id: 3,
-    name: "Bamboo Fiber Dress",
-    price: 65.99,
-    originalPrice: 85.00,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=500&fit=crop",
-    category: "Dresses",
-    sustainability: "Bamboo",
-    rating: 4.7,
-    reviews: 156,
-    sizes: ["XS", "S", "M", "L"],
-    colors: ["Green", "Beige", "Navy"],
-    description: "Soft and breathable bamboo fiber dress that's perfect for both casual and formal occasions.",
-    inStock: true,
-    badge: "New"
-  },
-  {
-    id: 4,
-    name: "Hemp Canvas Tote Bag",
-    price: 24.99,
-    originalPrice: 32.00,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=500&fit=crop",
-    category: "Accessories",
-    sustainability: "Hemp",
-    rating: 4.6,
-    reviews: 203,
-    sizes: ["One Size"],
-    colors: ["Natural", "Black", "Brown"],
-    description: "Durable hemp canvas tote bag - the perfect eco-friendly alternative to plastic bags.",
-    inStock: true,
-    badge: "Popular"
-  },
-  {
-    id: 5,
-    name: "Organic Linen Pants",
-    price: 79.99,
-    originalPrice: 99.99,
-    image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=500&fit=crop",
-    category: "Bottoms",
-    sustainability: "Organic",
-    rating: 4.8,
-    reviews: 67,
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Beige", "White", "Black"],
-    description: "Comfortable organic linen pants that are both stylish and environmentally conscious.",
-    inStock: false,
-    badge: "Limited"
-  },
-  {
-    id: 6,
-    name: "Recycled Plastic Sunglasses",
-    price: 45.99,
-    originalPrice: 65.00,
-    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=500&fit=crop",
-    category: "Accessories",
-    sustainability: "Recycled",
-    rating: 4.5,
-    reviews: 98,
-    sizes: ["One Size"],
-    colors: ["Black", "Brown", "Tortoise"],
-    description: "Stylish sunglasses made from recycled ocean plastic, protecting your eyes and the planet.",
-    inStock: true,
-    badge: "Ocean Friendly"
-  }
+const seedProducts = [
+  { id: 1, name: 'Organic Tee', price: 29.99, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop', category: 'Tops', badge: 'New' },
+  { id: 2, name: 'Recycled Jacket', price: 89.99, image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=500&fit=crop', category: 'Outerwear', badge: 'Popular' },
+  { id: 3, name: 'Bamboo Dress', price: 65.99, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=500&fit=crop', category: 'Dresses', badge: 'Eco' },
+  { id: 4, name: 'Hemp Tote', price: 24.99, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=500&fit=crop', category: 'Accessories', badge: 'Best' },
+  { id: 5, name: 'Linen Shirt', price: 49.99, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&h=500&fit=crop', category: 'Tops', badge: 'Fresh' },
+  { id: 6, name: 'Cork Wallet', price: 19.99, image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=500&fit=crop', category: 'Accessories', badge: 'Vegan' },
+  { id: 7, name: 'Organic Joggers', price: 54.99, image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&h=500&fit=crop', category: 'Bottoms', badge: 'Cozy' },
+  { id: 8, name: 'Recycled Sneakers', price: 79.99, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=500&fit=crop', category: 'Footwear', badge: 'Eco' },
+  { id: 9, name: 'Organic Hoodie', price: 59.99, image: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=400&h=500&fit=crop', category: 'Outerwear', badge: 'Warm' },
+  { id: 10, name: 'Bamboo Socks (3-pack)', price: 14.99, image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=500&fit=crop', category: 'Accessories', badge: 'Soft' },
+  { id: 11, name: 'Tencel Scarf', price: 22.99, image: 'https://images.unsplash.com/photo-1542060748-10c28b62716b?w=400&h=500&fit=crop', category: 'Accessories', badge: 'Light' },
+  { id: 12, name: 'Recycled Backpack', price: 69.99, image: 'https://images.unsplash.com/photo-1514477917009-389c76a86b68?w=400&h=500&fit=crop', category: 'Bags', badge: 'Recycled' }
 ]
 
 function EcoThreads() {
-  const [products, setProducts] = useState(mockProducts)
-  const [filteredProducts, setFilteredProducts] = useState(mockProducts)
+  const [items, setItems] = useState(seedProducts)
+  const [query, setQuery] = useState('')
+  const [cartOpen, setCartOpen] = useState(false)
   const [cart, setCart] = useState([])
-  const [wishlist, setWishlist] = useState([])
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [selectedSustainability, setSelectedSustainability] = useState('All')
-  const [priceRange, setPriceRange] = useState([0, 200])
-  const [sortBy, setSortBy] = useState('featured')
-  const [showCart, setShowCart] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState(null)
 
-  // Load cart and wishlist from localStorage on component mount
   useEffect(() => {
-    const savedCart = localStorage.getItem('ecothreads-cart')
-    const savedWishlist = localStorage.getItem('ecothreads-wishlist')
-    try {
-      if (savedCart) {
-        const parsedCart = JSON.parse(savedCart)
-        if (Array.isArray(parsedCart)) setCart(parsedCart)
-      }
-    } catch (_) {
-      // ignore malformed cart
-    }
-    try {
-      if (savedWishlist) {
-        const parsedWishlist = JSON.parse(savedWishlist)
-        if (Array.isArray(parsedWishlist)) setWishlist(parsedWishlist)
-      }
-    } catch (_) {
-      // ignore malformed wishlist
+    const saved = localStorage.getItem('efx-cart')
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        if (Array.isArray(parsed)) setCart(parsed)
+      } catch {}
     }
   }, [])
 
-  // Save cart and wishlist to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem('ecothreads-cart', JSON.stringify(cart))
+    localStorage.setItem('efx-cart', JSON.stringify(cart))
   }, [cart])
 
-  useEffect(() => {
-    localStorage.setItem('ecothreads-wishlist', JSON.stringify(wishlist))
-  }, [wishlist])
-
-  // Filter and search products
-  useEffect(() => {
-    let filtered = products.filter(product => {
-      const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
-      const matchesSustainability = selectedSustainability === 'All' || product.sustainability === selectedSustainability
-      const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1]
-      
-      return matchesSearch && matchesCategory && matchesSustainability && matchesPrice
-    })
-
-    // Sort products
-    switch (sortBy) {
-      case 'price-low':
-        filtered.sort((a, b) => a.price - b.price)
-        break
-      case 'price-high':
-        filtered.sort((a, b) => b.price - a.price)
-        break
-      case 'rating':
-        filtered.sort((a, b) => b.rating - a.rating)
-        break
-      case 'newest':
-        filtered.sort((a, b) => b.id - a.id)
-        break
-      default:
-        // Keep original order for 'featured'
-        break
-    }
-
-    setFilteredProducts(filtered)
-  }, [products, searchTerm, selectedCategory, selectedSustainability, priceRange, sortBy])
+  const filtered = items.filter(p => p.name.toLowerCase().includes(query.toLowerCase()))
 
   const addToCart = (product) => {
-    const existingItem = cart.find(item => item.id === product.id)
-    if (existingItem) {
-      setCart(cart.map(item => 
-        item.id === product.id 
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ))
+    const existing = cart.find(c => c.id === product.id)
+    if (existing) {
+      setCart(cart.map(c => c.id === product.id ? { ...c, qty: c.qty + 1 } : c))
     } else {
-      setCart([...cart, { ...product, quantity: 1 }])
+      setCart([...cart, { ...product, qty: 1 }])
     }
   }
 
-  const removeFromCart = (productId) => {
-    setCart(cart.filter(item => item.id !== productId))
-  }
-
-  const updateCartQuantity = (productId, quantity) => {
-    if (quantity <= 0) {
-      removeFromCart(productId)
+  const updateQty = (id, next) => {
+    if (next <= 0) {
+      setCart(cart.filter(c => c.id !== id))
     } else {
-      setCart(cart.map(item => 
-        item.id === productId 
-          ? { ...item, quantity }
-          : item
-      ))
+      setCart(cart.map(c => c.id === id ? { ...c, qty: next } : c))
     }
   }
 
-  const toggleWishlist = (product) => {
-    const isInWishlist = wishlist.find(item => item.id === product.id)
-    if (isInWishlist) {
-      setWishlist(wishlist.filter(item => item.id !== product.id))
-    } else {
-      setWishlist([...wishlist, product])
-    }
-  }
-
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0)
-  }
-
-  const getCartItemCount = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0)
-  }
-
-  const categories = ['All', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'Accessories']
-  const sustainabilityOptions = ['All', 'Eco-Friendly', 'Recycled', 'Organic', 'Bamboo', 'Hemp']
+  const count = cart.reduce((n, c) => n + c.qty, 0)
+  const total = cart.reduce((n, c) => n + c.qty * c.price, 0)
 
   return (
-    <div className="etx-root">
-      {/* Header */}
-      <header className="etx-header">
-        <div className="etx-header-content">
-          <div className="etx-logo">
-            <div className="etx-logo-icon">
-              <i className="fa-solid fa-leaf"></i>
-              </div>
-            <h1 className="etx-logo-text">EcoThreads</h1>
-            <span className="etx-tagline">Sustainable Fashion</span>
+    <div className="efx-root">
+      <header className="efx-header">
+        <div className="efx-header-wrap">
+          <div className="efx-brand">
+            <span className="efx-brand-icon">🌿</span>
+            <h1 className="efx-brand-text">EcoThreads</h1>
           </div>
-          
-          <div className="etx-search">
-            <div className="etx-search-container">
-              <div className="etx-search-icon"><i className="fas fa-search"></i></div>
-              <input
-                type="text"
-                placeholder="Search sustainable fashion..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="etx-search-input"
-              />
-            </div>
+          <div className="efx-search">
+            <input className="efx-search-input" placeholder="Search products" value={query} onChange={e => setQuery(e.target.value)} />
           </div>
-
-          <div className="etx-header-actions">
-            <button 
-              className="etx-wishlist-btn"
-              title="Wishlist"
-            >
-              <span className="etx-btn-icon"><i className="fas fa-heart"></i></span>
-              <span className="btn-text">{wishlist.length}</span>
-            </button>
-            
-            <button 
-              className="etx-cart-btn"
-              onClick={() => setShowCart(!showCart)}
-              title="Shopping Cart"
-            >
-              <span className="etx-btn-icon"><i className="fas fa-shopping-cart"></i></span>
-              <span className="btn-text">{getCartItemCount()}</span>
+          <div className="efx-actions">
+            <button className="efx-cart-btn" onClick={() => setCartOpen(true)}>
+              <span className="efx-cart-count">{count}</span>
+              Cart
             </button>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="etx-hero">
-        <div className="etx-hero-content">
-          <h2 className="etx-hero-title">Sustainable Fashion for a Better Tomorrow</h2>
-          <p className="etx-hero-subtitle">
-            Discover eco-friendly clothing that doesn't compromise on style. 
-            Every purchase supports environmental responsibility.
-          </p>
-          <div className="etx-hero-stats">
-            <div className="etx-stat">
-              <span className="etx-stat-number">10K+</span>
-              <span className="etx-stat-label">Happy Customers</span>
-            </div>
-            <div className="etx-stat">
-              <span className="etx-stat-number">50K+</span>
-              <span className="etx-stat-label">Trees Planted</span>
-            </div>
-            <div className="etx-stat">
-              <span className="etx-stat-number">100%</span>
-              <span className="etx-stat-label">Eco-Friendly</span>
-            </div>
-          </div>
+      <section className="efx-hero">
+        <div className="efx-hero-inner">
+          <h2 className="efx-hero-title">Sustainable styles, responsibly made</h2>
+          <p className="efx-hero-sub">Discover eco‑friendly pieces that look good and do good.</p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="etx-main">
-        {/* Sidebar Filters */}
-        <aside className="etx-filters">
-          <div className="etx-filter-section">
-            <h3 className="etx-filter-title">Categories</h3>
-            <div className="etx-filter-options">
-              {categories.map(category => (
-                <button
-                  key={category}
-                  className={`etx-filter-option ${selectedCategory === category ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="etx-filter-section">
-            <h3 className="etx-filter-title">Sustainability</h3>
-            <div className="etx-filter-options">
-              {sustainabilityOptions.map(option => (
-                <button
-                  key={option}
-                  className={`etx-filter-option ${selectedSustainability === option ? 'active' : ''}`}
-                  onClick={() => setSelectedSustainability(option)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="etx-filter-section">
-            <h3 className="etx-filter-title">Price Range</h3>
-            <div className="etx-price-range">
-              <span className="etx-price-label">${priceRange[0]} - ${priceRange[1]}</span>
-              <input
-                type="range"
-                min="0"
-                max="200"
-                value={priceRange[1]}
-                onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                className="etx-price-slider"
-              />
-            </div>
-          </div>
-        </aside>
-
-        {/* Products Section */}
-        <main className="etx-products">
-          <div className="etx-products-header">
-            <h2 className="etx-products-title">
-              {filteredProducts.length} Sustainable Products
-            </h2>
-            <div className="etx-sort-controls">
-              <label htmlFor="sort-select">Sort by:</label>
-              <select
-                id="sort-select"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="etx-sort-select"
-              >
-                <option value="featured">Featured</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-                <option value="newest">Newest</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="etx-products-grid">
-            {filteredProducts.map(product => (
-              <div key={product.id} className="etx-product-card">
-                <div className="etx-product-image-container">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="etx-product-image"
-                  />
-                  <div className="etx-product-badges">
-                    {product.badge && (
-                      <span className={`etx-product-badge ${product.badge.toLowerCase().replace(' ', '-')}`}>
-                        {product.badge}
-                      </span>
-                    )}
-                    <span className={`etx-sustainability-badge ${product.sustainability.toLowerCase()}`}>
-                      {product.sustainability}
-                    </span>
-                  </div>
-                  <div className="etx-product-actions">
-                    <button 
-                      className="etx-action-btn etx-wishlist-btn"
-                      onClick={() => toggleWishlist(product)}
-                      title="Add to Wishlist"
-                    >
-                      {wishlist.find(item => item.id === product.id) ? 
-                        <i className="fas fa-heart"></i> : 
-                        <i className="far fa-heart"></i>
-                      }
-                    </button>
-                    <button 
-                      className="etx-action-btn etx-quick-view-btn"
-                      onClick={() => setSelectedProduct(product)}
-                      title="Quick View"
-                    >
-                      <i className="fas fa-eye"></i>
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="etx-product-info">
-                  <h3 className="etx-product-name">{product.name}</h3>
-                  <div className="etx-product-rating">
-                    <span className="etx-stars"><i className="fas fa-star"></i></span>
-                    <span className="etx-rating-value">{product.rating}</span>
-                    <span className="etx-reviews-count">({product.reviews})</span>
-                  </div>
-                  <div className="etx-product-price">
-                    <span className="etx-current-price">${product.price}</span>
-                    {product.originalPrice > product.price && (
-                      <span className="etx-original-price">${product.originalPrice}</span>
-                    )}
-                  </div>
-                  <button 
-                    className="etx-add-to-cart-btn"
-                    onClick={() => addToCart(product)}
-                    disabled={!product.inStock}
-                  >
-                    {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                  </button>
+      <main className="efx-main">
+        <div className="efx-grid">
+          {filtered.map(p => (
+            <article key={p.id} className="efx-card">
+              <div className="efx-card-media">
+                <img src={p.image} alt={p.name} />
+                {p.badge && <span className="efx-badge">{p.badge}</span>}
+              </div>
+              <div className="efx-card-body">
+                <h3 className="efx-card-title">{p.name}</h3>
+                <div className="efx-card-row">
+                  <span className="efx-price">${p.price}</span>
+                  <button className="efx-add" onClick={() => addToCart(p)}>Add</button>
                 </div>
               </div>
-            ))}
-          </div>
-        </main>
-      </div>
+            </article>
+          ))}
+        </div>
+      </main>
 
-      {/* Shopping Cart Sidebar */}
-      {showCart && (
-        <div className="etx-cart-overlay" onClick={() => setShowCart(false)}>
-          <div className="etx-cart-sidebar" onClick={(e) => e.stopPropagation()}>
-            <div className="etx-cart-header">
-              <h3>Shopping Cart ({getCartItemCount()})</h3>
-              <button 
-                className="etx-close-cart-btn"
-                onClick={() => setShowCart(false)}
-              >
-                <i className="fas fa-times"></i>
-              </button>
+      {cartOpen && (
+        <div className="efx-drawer-overlay" onClick={() => setCartOpen(false)}>
+          <aside className="efx-drawer" onClick={e => e.stopPropagation()}>
+            <div className="efx-drawer-head">
+              <h4>Cart ({count})</h4>
+              <button className="efx-close" onClick={() => setCartOpen(false)}>✕</button>
             </div>
-            
-            <div className="etx-cart-items">
+            <div className="efx-drawer-body">
               {cart.length === 0 ? (
-                <div className="etx-empty-cart">
-                  <div className="etx-empty-cart-icon"><i className="fas fa-shopping-cart"></i></div>
-                  <p>Your cart is empty</p>
-                </div>
+                <div className="efx-empty">Your cart is empty</div>
               ) : (
                 cart.map(item => (
-                  <div key={item.id} className="etx-cart-item">
-                    <img src={item.image} alt={item.name} className="etx-cart-item-image" />
-                    <div className="etx-cart-item-info">
-                      <h4 className="etx-cart-item-name">{item.name}</h4>
-                      <p className="etx-cart-item-price">${item.price}</p>
-                      <div className="etx-quantity-controls">
-                        <button 
-                          onClick={() => updateCartQuantity(item.id, item.quantity - 1)}
-                          className="etx-quantity-btn"
-                        >
-                          -
-                        </button>
-                        <span className="etx-quantity">{item.quantity}</span>
-                        <button 
-                          onClick={() => updateCartQuantity(item.id, item.quantity + 1)}
-                          className="etx-quantity-btn"
-                        >
-                          +
-                        </button>
+                  <div key={item.id} className="efx-line">
+                    <img src={item.image} alt={item.name} />
+                    <div className="efx-line-info">
+                      <div className="efx-line-name">{item.name}</div>
+                      <div className="efx-line-ctrls">
+                        <button onClick={() => updateQty(item.id, item.qty - 1)}>-</button>
+                        <span>{item.qty}</span>
+                        <button onClick={() => updateQty(item.id, item.qty + 1)}>+</button>
                       </div>
                     </div>
-                    <button 
-                      onClick={() => removeFromCart(item.id)}
-                      className="etx-remove-item-btn"
-                    >
-                      <i className="fas fa-times"></i>
-                    </button>
+                    <div className="efx-line-price">${(item.qty * item.price).toFixed(2)}</div>
                   </div>
                 ))
               )}
             </div>
-            
-            {cart.length > 0 && (
-              <div className="etx-cart-footer">
-                <div className="etx-cart-total">
-                  <span className="total-label">Total:</span>
-                  <span className="total-amount">${getCartTotal().toFixed(2)}</span>
-                </div>
-                <button className="etx-checkout-btn">
-                  Proceed to Checkout
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Product Detail Modal */}
-      {selectedProduct && (
-        <div className="etx-product-modal-overlay" onClick={() => setSelectedProduct(null)}>
-          <div className="etx-product-modal" onClick={(e) => e.stopPropagation()}>
-            <button 
-              className="etx-close-modal-btn"
-              onClick={() => setSelectedProduct(null)}
-            >
-              <i className="fas fa-times"></i>
-            </button>
-            
-            <div className="etx-modal-content">
-              <div className="etx-modal-image">
-                <img src={selectedProduct.image} alt={selectedProduct.name} />
-              </div>
-              
-              <div className="etx-modal-info">
-                <h2 className="etx-modal-title">{selectedProduct.name}</h2>
-                <div className="etx-modal-rating">
-                  <span className="stars"><i className="fas fa-star"></i></span>
-                  <span className="rating-value">{selectedProduct.rating}</span>
-                  <span className="reviews-count">({selectedProduct.reviews} reviews)</span>
-                </div>
-                
-                <div className="etx-modal-price">
-                  <span className="etx-current-price">${selectedProduct.price}</span>
-                  {selectedProduct.originalPrice > selectedProduct.price && (
-                    <span className="etx-original-price">${selectedProduct.originalPrice}</span>
-                  )}
-                </div>
-                
-                <p className="etx-modal-description">{selectedProduct.description}</p>
-                
-                <div className="etx-modal-details">
-                  <div className="etx-detail-row">
-                    <span className="etx-detail-label">Category:</span>
-                    <span className="etx-detail-value">{selectedProduct.category}</span>
-                  </div>
-                  <div className="etx-detail-row">
-                    <span className="etx-detail-label">Sustainability:</span>
-                    <span className="etx-detail-value">{selectedProduct.sustainability}</span>
-                  </div>
-                  <div className="etx-detail-row">
-                    <span className="etx-detail-label">Sizes:</span>
-                    <span className="etx-detail-value">{selectedProduct.sizes.join(', ')}</span>
-                  </div>
-                  <div className="etx-detail-row">
-                    <span className="etx-detail-label">Colors:</span>
-                    <span className="etx-detail-value">{selectedProduct.colors.join(', ')}</span>
-                  </div>
-                </div>
-                
-                <div className="etx-modal-actions">
-                  <button 
-                    className="etx-modal-wishlist-btn"
-                    onClick={() => toggleWishlist(selectedProduct)}
-                  >
-                    {wishlist.find(item => item.id === selectedProduct.id) ? 
-                      <><i className="fas fa-heart"></i> Remove from Wishlist</> : 
-                      <><i className="far fa-heart"></i> Add to Wishlist</>
-                    }
-                  </button>
-                  <button 
-                    className="etx-modal-cart-btn"
-                    onClick={() => {
-                      addToCart(selectedProduct)
-                      setSelectedProduct(null)
-                    }}
-                    disabled={!selectedProduct.inStock}
-                  >
-                    {selectedProduct.inStock ? 'Add to Cart' : 'Out of Stock'}
-                  </button>
-                </div>
-              </div>
+            <div className="efx-drawer-foot">
+              <div className="efx-total">Total: <strong>${total.toFixed(2)}</strong></div>
+              <button className="efx-checkout" disabled={cart.length === 0}>Checkout</button>
             </div>
-          </div>
+          </aside>
         </div>
       )}
-      <div style={{textAlign:'center', padding:'20px'}}>
-        <Link to="/" className="video-link" style={{display:'inline-block'}}>
-          ← Back to Home
-        </Link>
-      </div>
     </div>
   )
 }
